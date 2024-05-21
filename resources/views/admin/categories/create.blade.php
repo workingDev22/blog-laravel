@@ -23,19 +23,31 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                <div class="row mb-2">
-                    <div class="col-sm-8">
+                <form action="{{ route('admin.categories.store') }}" method="POST">
+                    @csrf
 
-                        <input type="submit" class=" form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row mb-2">
+                        <div class="col-sm-8">
+
+                            @error('title')
+                            <div class="text-danger">
+                                Ошибка валидации, введите строковые данные.
+                            </div>
+                            @enderror
+
+                            <input type="text" name="title" class="form-control" id="exampleInputEmail1"
+                                   placeholder="Введите категорию">
+
+
+                        </div>
 
                     </div>
 
-                </div>
-
-                <div class="w-25">
-                    <button type="button" class="btn btn-block btn-primary">Добавить категорию</button>
-                </div>
+                    <div class="w-25">
+                        <button type="submit" class="btn btn-block btn-primary">Добавить категорию</button>
+                    </div>
+                </form>
 
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
