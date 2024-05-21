@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Добавление категории</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -25,14 +25,16 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row mb-2">
-                    <div class="col-sm-12">
-                        Categories
+                    <div class="col-sm-8">
+
+                        <input type="submit" class=" form-control" id="exampleInputEmail1" placeholder="Enter email">
+
                     </div>
 
                 </div>
 
                 <div class="w-25">
-                    <a href="{{ route('admin.categories.create') }}" type="button" class="btn btn-block btn-primary">Добавить категорию</a>
+                    <button type="button" class="btn btn-block btn-primary">Добавить категорию</button>
                 </div>
 
                 <!-- /.row -->
