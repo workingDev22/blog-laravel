@@ -39,7 +39,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Название</th>
-                                        <th>Подробно</th>
+                                        <th colspan="2" class="text-center">Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +47,17 @@
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->title }}</td>
-                                        <td><a href="{{ route('admin.categories.show', $category->id )}}"> <i class="fas fa-eye"></i></a></td>
+                                        <td class="text-center"><a href="{{ route('admin.categories.show', $category->id )}}"> <i class="fas fa-eye"></i></a></td>
+                                        <td class="text-center"><a href="{{ route('admin.categories.edit', $category->id )}}"> <i class="fas fa-pencil-alt"></i></a></td>
+                                        <td class="text-center">
+                                            <form action="{{ route('admin.categories.delete', $category->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fas fa-trash text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                     </tbody>

@@ -25,9 +25,17 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
 
-                <div class="w-25 mb-3">
-                    <a href="{{ route('admin.categories.create') }}" type="button" class="btn btn-block btn-primary">Добавить
+                <div class="w-25 mb-3 d-flex align-items-center">
+                    <a href="{{ route('admin.categories.create') }}" type="button" class="btn btn-block btn-primary mr-3">Добавить
                         категорию</a>
+                    <a href="{{ route('admin.categories.edit', $category->id )}}"> <i class="fas fa-pencil-alt text-success mr-3"></i></a>
+                    <form action="{{ route('admin.categories.delete', $category->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="border-0 bg-transparent">
+                            <i class="fas fa-trash text-danger"></i>
+                        </button>
+                    </form>
                 </div>
 
                 <div class="row">
