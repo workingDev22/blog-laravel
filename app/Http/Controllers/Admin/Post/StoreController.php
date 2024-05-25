@@ -11,8 +11,6 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['content'] = 'tets';
-        $data['category_id'] = 1;
 
         Post::firstOrCreate($data);
 
