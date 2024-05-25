@@ -16,6 +16,6 @@ class StoreController extends Controller
 
         Post::firstOrCreate($data);
 
-        return redirect()->route('admin.tag.index');
+        return redirect()->route('admin.post.index');
     }
 }
