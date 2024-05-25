@@ -54,28 +54,56 @@
 
                     </div>
                     <div class="row">
+                        @error('preview_file')
+                        <div class="text-danger">
+                            Ошибка валидации, введите строковые данные.
+                        </div>
+                        @enderror
                         <div class="col-sm-6">
                             <div class="form-group mb-2">
                                 <label for="exampleInputFile">Foto preview</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="preview_file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"
+                                               name="preview_file">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                 </div>
                             </div>
 
+                            @error('main_file')
+                            <div class="text-danger">
+                                Ошибка валидации, введите строковые данные.
+                            </div>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputFile">Foto main</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="main_file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"
+                                               name="main_file">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group w-50">
+                        @error('category_id')
+                        <div class="text-danger">
+                            Ошибка валидации, введите строковые данные.
+                        </div>
+                        @enderror
+                        <label>Choose category</label>
+                        <select name="category_id" class="form-control">
+                            @foreach($categories as $category)
+                                <option @if(old('category_id') == $category->id) selected  @endif value="{{ $category->id }}">{{ $category->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
 
                     <div class="w-25">
                         <button type="submit" class="btn btn-block btn-primary">Добавить пост</button>

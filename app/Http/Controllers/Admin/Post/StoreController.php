@@ -15,6 +15,8 @@ class StoreController extends Controller
         $data['preview_file'] = Storage::put('/images', $data['preview_file']);
         $data['main_file'] = Storage::put('/images', $data['main_file']);
 
+//        dd($data);
+
         Post::firstOrCreate($data);
 
         return redirect()->route('admin.post.index');
