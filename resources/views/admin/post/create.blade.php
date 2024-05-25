@@ -28,7 +28,7 @@
 
                     <!-- Small boxes (Stat box) -->
                     <div class="row mb-2">
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 mb-3">
 
                             @error('title')
                             <div class="text-danger">
@@ -37,9 +37,19 @@
                             @enderror
 
                             <input type="text" name="title" class="form-control" id="exampleInputEmail1"
-                                   placeholder="Введите категорию">
+                                   placeholder="Введите категорию"
+                                   value="{{ old('title') }}">
+                        </div>
 
-
+                        <div class="col-sm-9">
+                            @error('content')
+                            <div class="text-danger">
+                                Ошибка валидации, введите строковые данные.
+                            </div>
+                            @enderror
+                            <textarea id="summernote" name="content">
+                                {{ old('content') }}
+                            </textarea>
                         </div>
 
                     </div>
