@@ -15,13 +15,14 @@ class PostService
     {
         try {
             DB::beginTransaction();
-            if($this->isSetPrevImage($data))
+            if ($this->isSetPrevImage($data))
                 $data[$this->previewImg] = Storage::disk('public')->put('/images', $data[$this->previewImg]);
 
-            if(isset($data[$this->mainImg]))
+            if (isset($data[$this->mainImg]))
                 $data[$this->mainImg] = Storage::disk('public')->put('/images', $data[$this->mainImg]);
 
-            $tagIds = $data['tag_ids'];
+            $tagIds = $data['tag_ids'] ?? [];
+
             unset($data['tag_ids']);
 
             $post = Post::firstOrCreate($data);
@@ -36,10 +37,10 @@ class PostService
     public function update(array $data, Post $post)
     {
         try {
-            if(isset($data['preview_file']))
+            if (isset($data['preview_file']))
                 $data['preview_file'] = Storage::disk('public')->put('/images', $data['preview_file']);
 
-            if(isset($data['main_file']))
+            if (isset($data['main_file']))
                 $data['main_file'] = Storage::disk('public')->put('/images', $data['main_file']);
 
             $tagIds = $data['tag_ids'];
@@ -55,10 +56,10 @@ class PostService
         }
     }
 
-    private function isSetPrevImage($data):bool{
+    private function isSetPrevImage($data): bool
+    {
         return isset($data[$this->previewImg]);
     }
-
 
 
 }
