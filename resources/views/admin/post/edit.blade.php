@@ -38,7 +38,7 @@
                             @enderror
 
                             <input type="text" name="title" class="form-control"
-                                   value="{{ $post->title }}" placeholder="Введите категорию">
+                                   value="{{ old('title', $post->title) }}" placeholder="Введите категорию">
 
 
                         </div>
@@ -50,7 +50,7 @@
                             </div>
                             @enderror
                             <textarea id="summernote" name="content">
-                                {{ old('content') }}
+                                {{ old('content', $post->content) }}
                             </textarea>
                         </div>
 
@@ -136,7 +136,7 @@
 
 
                     <div class="w-25">
-                        <button type="submit" class="btn btn-block btn-primary">Добавить категорию</button>
+                        <button type="submit" class="btn btn-block btn-primary">Update post</button>
                     </div>
                 </form>
 
