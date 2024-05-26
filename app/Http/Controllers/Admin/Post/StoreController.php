@@ -15,9 +15,13 @@ class StoreController extends Controller
         $data['preview_file'] = Storage::put('/images', $data['preview_file']);
         $data['main_file'] = Storage::put('/images', $data['main_file']);
 
-//        dd($data);
+        $tagIds = $data['tag_ids'];
+        unset($data['tag_ids']);
 
-        Post::firstOrCreate($data);
+        $post = Post::firstOrCreate($data);
+        $post->tags()->attach($tagIds);
+
+
 
         return redirect()->route('admin.post.index');
     }

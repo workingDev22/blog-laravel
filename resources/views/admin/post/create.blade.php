@@ -98,11 +98,30 @@
                         <label>Choose category</label>
                         <select name="category_id" class="form-control">
                             @foreach($categories as $category)
-                                <option @if(old('category_id') == $category->id) selected  @endif value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option @if(old('category_id') == $category->id) selected
+                                        @endif value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
                         </select>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Multiple</label>
+                            <select class="select2" name="tag_ids[]" multiple="multiple"
+                                    data-placeholder="Select a Tags" style="width: 100%;">
+                                @foreach($tags as $tag)
+                                    <option {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected' : '' }}
+                                        value={{ $tag->id }}>{{ $tag->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('tag_ids')
+                        <div class="text-danger">
+                            Ошибка валидации, введите строковые данные.
+                        </div>
+                        @enderror
+
+                    </div>
 
 
                     <div class="w-25">
