@@ -49,7 +49,7 @@
                                         <td class="text-center"><a href="{{ route('admin.post.show', $post->id )}}"> <i class="fas fa-eye"></i></a></td>
                                         <td class="text-center"><a href="{{ route('admin.post.edit', $post->id )}}"> <i class="fas fa-pencil-alt"></i></a></td>
                                         <td class="text-center">
-                                            <form action="{{ route('admin.categories.delete', $post->id) }}" method="post">
+                                            <form action="{{ route('admin.post.delete', $post->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="border-0 bg-transparent">
