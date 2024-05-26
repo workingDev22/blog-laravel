@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PostService
 {
+    private $previewImg = 'preview_file';
+    private $mainImg = 'main_file';
+
     public function store($data)
     {
         try {
             DB::beginTransaction();
-            if(isset($data['preview_file']))
-                $data['preview_file'] = Storage::disk('public')->put('/images', $data['preview_file']);
+            if($this->isSetPrevImage($data))
+                $data[$this->previewImg] = Storage::disk('public')->put('/images', $data[$this->previewImg]);
 
-            if(isset($data['main_file']))
-                $data['main_file'] = Storage::disk('public')->put('/images', $data['main_file']);
+            if(isset($data[$this->mainImg]))
+                $data[$this->mainImg] = Storage::disk('public')->put('/images', $data[$this->mainImg]);
 
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);
@@ -50,6 +53,10 @@ class PostService
             DB::rollBack();
             abort(500);
         }
+    }
+
+    private function isSetPrevImage($data):bool{
+        return isset($data[$this->previewImg]);
     }
 
 
