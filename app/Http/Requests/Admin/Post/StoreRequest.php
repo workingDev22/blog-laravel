@@ -33,4 +33,13 @@ class StoreRequest extends FormRequest
             'tag_ids.*' => 'nullable|integer|exists:tags,id'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Это поле обязательно для заполнения',
+            'title.string' => 'Это поле должно быть строчного типа',
+            'tag_ids.array' => 'Данные должны быть массивом',
+        ];
+    }
 }

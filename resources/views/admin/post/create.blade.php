@@ -32,7 +32,7 @@
 
                             @error('title')
                             <div class="text-danger">
-                                Ошибка валидации, введите строковые данные.
+                                {{ $message }}
                             </div>
                             @enderror
 
@@ -117,7 +117,7 @@
                         </div>
                         @error('tag_ids')
                         <div class="text-danger">
-                            Ошибка валидации, введите строковые данные.
+                            {{ $message }}
                         </div>
                         @enderror
 
