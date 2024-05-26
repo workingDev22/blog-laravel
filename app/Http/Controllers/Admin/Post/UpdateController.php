@@ -5,22 +5,16 @@ namespace App\Http\Controllers\Admin\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Post $post)
+    public function __invoke(UpdateRequest $request, PostService $service, Post $post)
     {
         $data = $request->validated();
 
-        $data['preview_file'] = Storage::disk('public')->put('/images', $data['preview_file']);
-        $data['main_file'] = Storage::disk('public')->put('/images', $data['main_file']);
-
-        $tagIds = $data['tag_ids'];
-        unset($data['tag_ids']);
-
-        $post->update($data);
-        $post->tags()->sync($tagIds);
+        $service->update($data, $post);
 
         return redirect()->route('admin.post.index');
     }
